@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 12:29:43 by asablayr          #+#    #+#             */
-/*   Updated: 2019/10/22 14:41:38 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/10/22 15:27:11 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 
 	str1 = (unsigned char *)s1;
 	str2 = (unsigned char *)s2;
-	if (!s1 || !s2)
-		return (NULL);
 	while (*str1 && *str1 == *str2 && n > 0)
 	{
 		str1++;
