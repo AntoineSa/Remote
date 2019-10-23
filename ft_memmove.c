@@ -6,11 +6,12 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 12:29:24 by asablayr          #+#    #+#             */
-/*   Updated: 2019/10/22 15:14:18 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/10/23 14:56:19 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
@@ -30,14 +31,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		}
 	}
 	else
-	{
-		while (len > 0)
-		{
-			*str_d = *str_s;
-			str_d++;
-			str_s++;
-			len--;
-		}
-	}
+		ft_memcpy(str_d, str_s, len);
 	return (dst);
 }
