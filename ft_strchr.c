@@ -6,11 +6,11 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:56:43 by asablayr          #+#    #+#             */
-/*   Updated: 2019/10/08 16:49:48 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/10/23 18:31:59 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define NULL (void *)0
+#include <stddef.h>
 
 char	*ft_strchr(const char *s, int c)
 {
