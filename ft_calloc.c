@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:19:34 by asablayr          #+#    #+#             */
-/*   Updated: 2019/10/24 10:25:57 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:10:02 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	*ft_calloc(size_t count, size_t size)
 	}
 	if (!(mem = malloc(count * size)))
 		return (NULL);
-	ft_bzero(mem,(count * size));
+	ft_bzero(mem, (count * size));
 	return (mem);
 }

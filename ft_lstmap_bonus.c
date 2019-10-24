@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 13:03:46 by asablayr          #+#    #+#             */
-/*   Updated: 2019/10/18 15:53:28 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/10/24 14:51:36 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		return (NULL);
 	if (!(head = ft_lstnew(f(lst->content))))
 		return (NULL);
+	lst = lst->next;
 	while (lst)
 	{
 		if (!(tmp = ft_lstnew(f(lst->content))))
