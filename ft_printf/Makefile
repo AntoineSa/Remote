@@ -6,7 +6,7 @@
 #    By: asablayr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 13:59:30 by asablayr          #+#    #+#              #
-#    Updated: 2019/11/26 17:29:46 by asablayr         ###   ########.fr        #
+#    Updated: 2019/12/04 11:27:44 by asablayr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ NAME = libftprintf.a
 FILES =	ft_atoi \
 		ft_calloc \
 		ft_memset \
+		ft_memcpy \
 		ft_printf \
 		ft_strchr \
 		ft_strjoin \
