@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 12:03:35 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/05 17:49:53 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/06 15:32:56 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,19 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-int		format_neg(char *b, t_flag f)
+static int	easy_format(t_flag f, char *buff, int len)
+{
+	if (f.spa != 2)
+	{
+		if (f.spa == 1)
+			return (write(1, ft_strf2join(" ", buff), len));
+		else
+			return (write(1, buff, len));
+	}
+	return (write(1, ft_strf2join("+", buff), len));
+}
+
+int			format_neg(char *b, t_flag f)
 {
 	char	*s;
 	int		len;
@@ -37,36 +49,28 @@ int		format_neg(char *b, t_flag f)
 	return (write(1, b, ft_strlen(b)));
 }
 
-int		format(char *buff, t_flag flags)
+int			format(char *buff, t_flag flags)
 {
 	char	*s;
-	char	c;
+	char	*c;
 	int		len;
 
 	len = (flags.spa == 0) ? ft_strlen(buff) : ft_strlen(buff) + 1;
 	if (flags.size <= len)
-	{
-		if (flags.spa != 2)
-		{
-			if (flags.spa == 1)
-				return (write(1, ft_strf2join(" ", buff), len));
-			else
-				return (write(1, buff, len));
-		}
-		return (write(1, ft_strf2join("+", buff), len));
-	}
+		return (easy_format(flags, buff, len));
 	s = ft_calloc(1, (flags.size - len + 1));
-	c = (flags.pad == 1) ? '0' : ' ';
-	ft_memset(s, c, flags.size - len);
-	if (flags.spa == 1)
-		buff = ft_strf2join(" ", buff);
-	else if (flags.spa == 2)
-		buff = ft_strf2join("+", buff);
+	c = (flags.pad == 1) ? "0" : " ";
+	ft_memset(s, *c, flags.size - len);
+	c = (flags.spa > 1) ? "+" : " ";
+	if (flags.pad != 1 && flags.spa != 0)
+		buff = ft_strf2join(c, buff);
 	buff = (flags.pad == 2) ? ft_strffjoin(buff, s) : ft_strffjoin(s, buff);
+	if (flags.pad == 1 && flags.spa != 0)
+		buff = ft_strf2join(c, buff);
 	return (write(1, buff, ft_strlen(buff)));
 }
 
-int		format_char(char *buff, t_flag f)
+int			format_char(char *buff, t_flag f)
 {
 	char	*s;
 	int		len;

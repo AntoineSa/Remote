@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 08:19:11 by asablayr          #+#    #+#             */
-/*   Updated: 2019/11/26 16:27:04 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/06 14:30:44 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		check_padding(char *s, t_flag *flags)
 			plus = 1;
 	}
 	flags->spa = plus == 1 ? 2 : flags->spa;
-	if (flags->spa > 0 || flags->alt > 0)
+	if (flags->alt > 0)
 		flags->pad = 0;
 	flags->pad = neg == 1 ? 2 : flags->pad;
 	return (i);
