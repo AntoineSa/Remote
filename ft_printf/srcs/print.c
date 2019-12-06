@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 12:03:35 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/06 15:32:56 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/06 15:39:40 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			format_char(char *buff, t_flag f)
 	return (write(1, buff, l + len));
 }
 
-int		alt_format(char *buff, t_flag flags)
+int			alt_format(char *buff, t_flag flags)
 {
 	if ((char)flags.arg == '\0')
 	{
