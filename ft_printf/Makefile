@@ -6,7 +6,7 @@
 #    By: asablayr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 13:59:30 by asablayr          #+#    #+#              #
-#    Updated: 2019/12/04 11:27:44 by asablayr         ###   ########.fr        #
+#    Updated: 2019/12/06 15:42:15 by asablayr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,8 @@ $(NAME) : $(addprefix $(OBJDIR), $(OBJS))
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	@mkdir -p $(OBJDIR)
 	$(CC) $(CLFAGS) $(addprefix -I, $(INCL_PATH)) -c $^ -o $@
+
+bonus: $(NAME)
 
 clean:
 	rm -rf $(OBJDIR)
