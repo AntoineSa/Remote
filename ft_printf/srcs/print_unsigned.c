@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 18:44:10 by asablayr          #+#    #+#             */
-/*   Updated: 2019/11/25 08:05:33 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/05 17:16:57 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*print_nb_u(unsigned int n)
 	return (str);
 }
 
-char		*print_unsigned_int(t_flag flags)
+int			print_unsigned_int(t_flag flags)
 {
 	char	*str;
 	char	*s;
@@ -55,7 +55,7 @@ char		*print_unsigned_int(t_flag flags)
 	if (flags.prec > len)
 	{
 		if (!(s = (char *)malloc(flags.prec - len + 1)))
-			return (NULL);
+			return (0);
 		ft_memset(s, '0', flags.prec - len);
 		s[flags.prec - len] = '\0';
 		str = ft_strjoin(s, str);

@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 18:28:03 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/04 12:26:57 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/05 16:51:38 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static char	*print_hexa_maj(unsigned long n)
 	return (conv);
 }
 
-char		*print_hexa(t_flag flags)
+int			print_hexa(t_flag flags)
 {
 	char	*str;
 	char	*s;
@@ -80,7 +80,7 @@ char		*print_hexa(t_flag flags)
 	if (len < flags.prec)
 	{
 		if (!(s = (char *)malloc(sizeof(char) * (flags.prec - len + 1))))
-			return (NULL);
+			return (0);
 		s[flags.prec - len] = '\0';
 		ft_memset(s, '0', flags.prec - len);
 		str = ft_strjoin(s, str);

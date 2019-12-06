@@ -6,49 +6,38 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 12:03:35 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/04 12:37:36 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/05 17:49:53 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
+#include <unistd.h>
 #include "ft_printf.h"
 
-void	get_arg(va_list aq, char c, t_flag *flags)
-{
-	if (c != '%')
-	{
-		if (flags->size == -1)
-			flags->size = va_arg(aq, int);
-		if (flags->prec == -1)
-			flags->prec = va_arg(aq, int);
-		flags->arg = va_arg(aq, void *);
-	}
-}
-
-char	*format_neg(char *b, t_flag f)
+int		format_neg(char *b, t_flag f)
 {
 	char	*s;
 	int		len;
 
-	len = f.spa == 0 ? ft_strlen(b) + 1 : ft_strlen(b) + 2;
+	len = ft_strlen(b) + 1;
 	if (f.size <= len)
-		return (ft_strf2join("-", b));
+		return (write(1, ft_strf2join("-", b), len));
 	s = ft_calloc(1, ((f.size - len) + 1));
 	ft_memset(s, ' ', f.size - len);
 	if (f.pad == 1)
 	{
 		ft_memset(s, '0', f.size - len);
 		b = ft_strffjoin(s, b);
-		return (f.spa > 0 ? ft_strf2join(" -", b) : ft_strf2join("-", b));
+		b = f.spa > 0 ? ft_strf2join(" -", b) : ft_strf2join("-", b);
+		return (write(1, b, ft_strlen(b)));
 	}
 	else
 		b = ft_strf2join("-", b);
-	if (f.spa > 0)
-		b = ft_strf1join(b, " ");
-	return (f.pad == 2 ? ft_strffjoin(b, s) : ft_strffjoin(s, b));
+	b = f.pad == 2 ? ft_strffjoin(b, s) : ft_strffjoin(s, b);
+	return (write(1, b, ft_strlen(b)));
 }
 
-char	*format(char *buff, t_flag flags)
+int		format(char *buff, t_flag flags)
 {
 	char	*s;
 	char	c;
@@ -57,42 +46,49 @@ char	*format(char *buff, t_flag flags)
 	len = (flags.spa == 0) ? ft_strlen(buff) : ft_strlen(buff) + 1;
 	if (flags.size <= len)
 	{
-		if (flags.spa != 2 && *buff != '-')
-			return (flags.spa == 1 ? ft_strf2join(" ", buff) : buff);
-		return (ft_strf2join("+", buff));
+		if (flags.spa != 2)
+		{
+			if (flags.spa == 1)
+				return (write(1, ft_strf2join(" ", buff), len));
+			else
+				return (write(1, buff, len));
+		}
+		return (write(1, ft_strf2join("+", buff), len));
 	}
 	s = ft_calloc(1, (flags.size - len + 1));
 	c = (flags.pad == 1) ? '0' : ' ';
 	ft_memset(s, c, flags.size - len);
 	if (flags.spa == 1)
 		buff = ft_strf2join(" ", buff);
-	if (flags.spa == 2)
+	else if (flags.spa == 2)
 		buff = ft_strf2join("+", buff);
 	buff = (flags.pad == 2) ? ft_strffjoin(buff, s) : ft_strffjoin(s, buff);
-	return (buff);
+	return (write(1, buff, ft_strlen(buff)));
 }
 
-char	*format_char(char *buff, t_flag flags)
+int		format_char(char *buff, t_flag f)
 {
 	char	*s;
 	int		len;
+	int		l;
 
-	if (flags.conv == 'c' && *buff == '\0')
+	if (f.conv == 'c' && *buff == '\0')
 		len = 1;
 	else
 		len = ft_strlen(buff);
-	if (flags.size <= len)
-		return (buff);
-	s = ft_calloc(1, flags.size - len + 1);
-	if (flags.conv == '%' && flags.pad == 1)
-		ft_memset(s, '0', flags.size - len);
+	if (f.size <= len)
+		return (write(1, buff, len));
+	l = f.size - len;
+	s = ft_calloc(1, l + 1);
+	if (f.conv == '%' && f.pad == 1)
+		ft_memset(s, '0', l);
 	else
-		ft_memset(s, ' ', flags.size - len);
-	buff = (flags.pad == 2) ? ft_strffjoin(buff, s) : ft_strffjoin(s, buff);
-	return (buff);
+		ft_memset(s, ' ', l);
+	buff = (f.pad == 2) ? ft_merge(buff, len, s, l) : ft_merge(s, l, buff, len);
+	return (write(1, buff, l + len));
 }
 
-char	*alt_format(char *buff, t_flag flags)
+int		alt_format(char *buff, t_flag flags)
 {
 	if ((char)flags.arg == '\0')
 	{

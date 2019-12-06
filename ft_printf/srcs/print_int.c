@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 18:33:41 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/04 12:23:17 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/05 16:51:57 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*print_nb(long n)
 	return (str);
 }
 
-char		*print_int(t_flag flags)
+int			print_int(t_flag flags)
 {
 	char	*str;
 	char	*s;
@@ -69,7 +69,7 @@ char		*print_int(t_flag flags)
 	if (flags.prec > len)
 	{
 		if (!(s = (char *)malloc(flags.prec - len + 1)))
-			return (NULL);
+			return (0);
 		ft_memset(s, '0', flags.prec - len);
 		s[flags.prec - len] = '\0';
 		str = ft_strf2join(s, str);
