@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 11:19:36 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/05 17:13:55 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/10 10:09:33 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int				format(char *str, t_flag flags);
 int				format_neg(char *str, t_flag flags);
 int				format_char(char *str, t_flag flags);
 int				alt_format(char *str, t_flag flag);
+int				print_perc(t_flag flags);
 int				print_str(t_flag flags);
 int				print_addr(t_flag flags);
 int				print_int(t_flag flags);
@@ -62,5 +63,6 @@ void			*ft_calloc(size_t count, size_t size);
 void			ft_memset(void *b, int c, size_t len);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_merge(void *dst, size_t len, void *src, size_t l);
+int				f_write(int fd, void *str, int len);
 
 #endif

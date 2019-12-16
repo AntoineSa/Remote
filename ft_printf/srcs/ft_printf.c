@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 10:45:31 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/05 17:16:07 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/12 17:57:00 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static t_aff	*tab_init(void)
 
 	if (!(tab = (t_aff *)malloc(sizeof(void *) * 255)))
 		return (NULL);
-	tab['%'] = print_str;
-	tab['%'] = print_str;
+	tab['%'] = print_perc;
 	tab['c'] = print_str;
 	tab['s'] = print_str;
 	tab['p'] = print_addr;
@@ -36,14 +35,25 @@ static t_aff	*tab_init(void)
 
 static void		get_arg(va_list aq, char c, t_flag *flags)
 {
-	if (c != '%')
+	if (flags->size == -1)
 	{
-		if (flags->size == -1)
-			flags->size = va_arg(aq, int);
-		if (flags->prec == -1)
-			flags->prec = va_arg(aq, int);
-		flags->arg = va_arg(aq, void *);
+		flags->size = va_arg(aq, int);
+		if (flags->size < 0)
+		{
+			flags->size = flags->size * (-1);
+			flags->pad = 2;
+		}
 	}
+	if (flags->prec == -1)
+	{
+		flags->prec = va_arg(aq, int);
+		if (flags->prec < 0)
+			flags->prec = -2;
+	}
+	if (flags->conv != '%')
+		flags->arg = va_arg(aq, void *);
+	if (flags->conv != '%' && flags->prec != -2)
+		flags->pad = flags->pad == 2 ? 2 : 0;
 }
 
 static int		convert(va_list aq, t_flag *flags, char *str)

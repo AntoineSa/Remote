@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 12:28:55 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/05 16:57:46 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/09 16:21:00 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ void	*ft_merge(void *dst, size_t s_d, void *src, size_t s_s)
 		i++;
 	}
 	str_d[i] = '\0';
+	free(dst);
+	free(src);
 	return (str_d);
 }

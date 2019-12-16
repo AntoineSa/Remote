@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:29:54 by asablayr          #+#    #+#             */
-/*   Updated: 2019/11/26 15:11:00 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/12 17:56:42 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ int			get_flags(const char *s, t_flag *flags)
 	i = check_padding(str, flags);
 	i += check_nb(&str[i], &flags->size);
 	if (str[i] == '.' && i++)
-	{
 		i += check_nb(&str[i], &flags->prec);
-		flags->pad = flags->pad == 2 ? 2 : 0;
-	}
 	return (check_conv(str[i], &flags->conv) == 1 ? i + 1 : 1);
 }

@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 18:33:41 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/05 16:51:57 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/09 17:19:57 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			print_int(t_flag flags)
 			return (0);
 		ft_memset(s, '0', flags.prec - len);
 		s[flags.prec - len] = '\0';
-		str = ft_strf2join(s, str);
+		str = ft_strffjoin(s, str);
 	}
 	else if (flags.prec == 0 && *str == '0')
 		str = ft_subfstr(str, 0, 0);

@@ -6,7 +6,7 @@
 #    By: asablayr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 13:59:30 by asablayr          #+#    #+#              #
-#    Updated: 2019/12/07 11:17:38 by asablayr         ###   ########.fr        #
+#    Updated: 2019/12/09 15:04:18 by asablayr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ FILES =	ft_atoi \
 		ft_strjoin \
 		ft_strlen \
 		ft_substr \
+		ft_putstr \
 		print_str \
 		parse \
 		parse_funct \

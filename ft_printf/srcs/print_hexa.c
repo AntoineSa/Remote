@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 18:28:03 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/05 16:51:38 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/12 16:03:00 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int			print_hexa(t_flag flags)
 	int		len;
 
 	if (flags.conv == 'x')
-		str = print_hexa_min((unsigned long)flags.arg);
+		str = print_hexa_min((unsigned int)flags.arg);
 	else
-		str = print_hexa_maj((unsigned long)flags.arg);
+		str = print_hexa_maj((unsigned int)flags.arg);
 	len = ft_strlen(str);
 	if (len < flags.prec)
 	{
@@ -83,7 +83,7 @@ int			print_hexa(t_flag flags)
 			return (0);
 		s[flags.prec - len] = '\0';
 		ft_memset(s, '0', flags.prec - len);
-		str = ft_strjoin(s, str);
+		str = ft_strffjoin(s, str);
 	}
 	else if (flags.prec == 0 && *str == '0')
 		str = ft_subfstr(str, 0, 0);
