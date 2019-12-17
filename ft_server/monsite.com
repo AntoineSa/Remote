@@ -8,7 +8,7 @@ server {
 	listen 80;
 
 	# Hostname
-	server_name 192.168.99.106;
+	server_name 192.168.99.108;
 
 	# Logs (acces et erreurs)
 	access_log /var/log/nginx/monsite.com.access.log;
@@ -26,6 +26,21 @@ server {
 		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
 	}
 
+	location /phpmyadmin {
+               root /usr/share/;
+               index index.php index.html index.htm;
+               location ~ ^/phpmyadmin/(.+\.php)$ {
+                       try_files $uri =404;
+                       root /usr/share/;
+                       fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+                       fastcgi_index index.php;
+                       fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                       include /etc/nginx/fastcgi_params;
+               }
+               location ~* ^/phpmyadmin/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+                       root /usr/share/;
+               }
+        }
 	location ~ /\.ht {
         deny all;
     }
