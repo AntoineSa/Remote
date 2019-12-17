@@ -6,7 +6,7 @@
 #    By: asablayr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/09 12:31:40 by asablayr          #+#    #+#              #
-#    Updated: 2019/12/17 12:58:24 by asablayr         ###   ########.fr        #
+#    Updated: 2019/12/17 16:43:08 by asablayr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,21 +28,18 @@ RUN	rm var/www/wordpress/wp-config-sample.php && \
 	mkdir -p /var/run/php && \
 	chmod 777 /var/run/php 
 
-#RUN	apt install -y python3-acme python3-certbot python3-mock python3-openssl python3-pkg-resources python3-pyparsing python3-zope.interface && \
-#	apt install python3-certbot-nginx
-
 RUN	apt install -y php-mbstring php-gettext && \
 	wget https://files.phpmyadmin.net/phpMyAdmin/4.9.2/phpMyAdmin-4.9.2-all-languages.tar.gz && \
 	tar xvf phpMyAdmin-4.9.2-all-languages.tar.gz && \
-	mv phpMyAdmin-4.9.2-all-languages/ /usr/share/phpmyadmin && rm -rf phpMyAdmin-a.9.2-all-languages.tar.gz && \
+	mv phpMyAdmin-4.9.2-all-languages/ /usr/share/phpmyadmin && rm -rf phpMyAdmin-4.9.2-all-languages.tar.gz && \
 	mkdir -p var/lib/phpmyadmin && \
 	mkdir -p var/lib/phpmyadmin/tmp && \
 	chmod 777 var/lib/phpmyadmin && \
-	chmod 777 var/lib/phpmyadmin/tmp && \
-	rm etc/sites-available/default && \
-	rm etc/sites-enabled/default
+	chmod 777 var/lib/phpmyadmin/tmp
 
 COPY	config.inc.php usr/share/phpmyadmin/config.inc.php
+COPY	nginx-selfsigned.key etc/ssl/private/nginxself-signed.key
+COPY	nginx-selfsigned.crt etc/ssl/certs/nginx-selfsigned.crt
 
 ENTRYPOINT	service nginx start && \
 			service mysql start && \
