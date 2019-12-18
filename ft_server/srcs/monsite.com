@@ -6,9 +6,13 @@ server {
 server {
 	# Port
 	listen 80;
+	listen 443 ssl http2 default_server;
+
+	include snippets/self-signed.conf;
+	include snippets/ssl-params.conf;
 
 	# Hostname
-	server_name 192.168.99.108;
+	server_name 192.168.99.111;
 
 	# Logs (acces et erreurs)
 	access_log /var/log/nginx/monsite.com.access.log;
