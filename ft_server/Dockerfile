@@ -6,7 +6,7 @@
 #    By: asablayr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/09 12:31:40 by asablayr          #+#    #+#              #
-#    Updated: 2019/12/18 11:14:14 by asablayr         ###   ########.fr        #
+#    Updated: 2019/12/18 11:52:09 by asablayr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ RUN apt update && \
 	mv latest.tar.gz var/www/ && \
 	cd var/www/ && tar -xzvf latest.tar.gz && rm -rf latest.tar.gz
 
-COPY	monsite.com etc/nginx/sites-available/ 
-COPY	wp-config.php var/www/wordpress
+COPY	srcs/monsite.com etc/nginx/sites-available/ 
+COPY	srcs/wp-config.php var/www/wordpress
 
 RUN	rm var/www/wordpress/wp-config-sample.php && \
 	ln -s /etc/nginx/sites-available/monsite.com etc/nginx/sites-enabled/ && \
@@ -37,11 +37,11 @@ RUN	apt install -y php-mbstring php-gettext && \
 	chmod 777 var/lib/phpmyadmin && \
 	chmod 777 var/lib/phpmyadmin/tmp
 
-COPY	config.inc.php usr/share/phpmyadmin/config.inc.php
-COPY	nginx-selfsigned.key etc/ssl/private/nginx-selfsigned.key
-COPY	nginx-selfsigned.crt etc/ssl/certs/nginx-selfsigned.crt
-COPY	ssl-params.conf /etc/nginx/snippets/ssl-params.conf
-COPY	self-signed.conf /etc/nginx/snippets/self-signed.conf
+COPY	srcs/config.inc.php usr/share/phpmyadmin/config.inc.php
+COPY	srcs/nginx-selfsigned.key etc/ssl/private/nginx-selfsigned.key
+COPY	srcs/nginx-selfsigned.crt etc/ssl/certs/nginx-selfsigned.crt
+COPY	srcs/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
+COPY	srcs/self-signed.conf /etc/nginx/snippets/self-signed.conf
 
 ENTRYPOINT	service nginx start && \
 			service mysql start && \

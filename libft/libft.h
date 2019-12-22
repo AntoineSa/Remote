@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 17:33:26 by asablayr          #+#    #+#             */
-/*   Updated: 2019/10/24 10:24:46 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/22 17:23:51 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define LIBFT_H
 
 # include <stddef.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE	100
+# endif
 
 typedef	struct	s_list
 {
@@ -52,7 +56,7 @@ char			*ft_strdup(const char *s1);
 **Second Part
 */
 char			*ft_substr(char const *s, unsigned int start, size_t len);
-char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strjoin(char *s1, char*s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *s, char c);
 char			*ft_itoa(int n);
@@ -73,5 +77,13 @@ void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *l, void *(*f)(void *), void (*d)(void *));
+/*
+**Additionnal
+*/
+int				get_next_line(int fd, char **line);
+char			*ft_subfstr(char *s, unsigned int start, size_t len);
+char			*ft_strf1join(char *s1, char *s2);
+char			*ft_strf2join(char *s1, char *s2);
+char			*ft_strffjoin(char *s1, char *s2);
 
 #endif

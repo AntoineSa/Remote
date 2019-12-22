@@ -6,12 +6,12 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 10:34:27 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/22 17:08:34 by asablayr         ###   ########.fr       */
+/*   Updated: 2019/12/02 14:05:20 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
+#include "ft_printf.h"
 #include <unistd.h>
 
 char	*ft_strjoin(char *s1, char *s2)
