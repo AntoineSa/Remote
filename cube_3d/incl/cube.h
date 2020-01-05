@@ -6,7 +6,7 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:10:13 by asablayr          #+#    #+#             */
-/*   Updated: 2019/12/22 16:56:55 by asablayr         ###   ########.fr       */
+/*   Updated: 2020/01/05 18:57:38 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,20 @@ typedef	struct	s_settings
 {
 	int		res_x;
 	int		res_y;
-	char	t_n;
-	char	t_e;
-	char	t_s;
-	char	t_w;
-	char	t_sp;
-	int		c_f[3];
-	int		c_c[3];
+	char	*t_n;
+	char	*t_e;
+	char	*t_s;
+	char	*t_w;
+	char	*t_sp;
+	int		*c_f;
+	int		*c_c;
 	char	**map;
-}				t_settings
+}				t_settings;
 
-char	*get_settings(t_settings *set, int fd);
-void	get_map(t_settings *set, int fd, char *str);
-
-int		ft_atoi(const char *str);
-char	**ft_split(char const *s, char c);
-char	ft_strjoin(char *s1, char *s2);
-char	ft_strf1join(char *s1, char *s2);
-char	ft_strf2join(char *s1, char *s2);
-char	ft_strffjoin(char *s1, char *s2);
-int		ft_strlen(const char *str);
-int		get_next_line(int fd, char **line);
+void	get_color(char obj, t_settings *set, char *str);
+void	get_text(char *text, char *str);
+void	get_res(int *res_x, int *res_y, char *str);
+void	init_set(t_settings *set);
+void	get_input(t_settings *set, int fd);
 
 #endif

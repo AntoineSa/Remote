@@ -3,11 +3,11 @@
 
 int	main(int ac, char **av)
 {
-	if (ac > 1)
-	{
-		get_input(av);
-		parse(input);
-	}
+	s_settings	set;
+
+	if (ac < 2)
+		ft_printf("no .cub specified\n");
+	get_input(&set, open(O_RDONLY, av[1]));
 	format(input);
 	while (true)
 	{
