@@ -6,35 +6,31 @@
 /*   By: asablayr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 16:41:19 by asablayr          #+#    #+#             */
-/*   Updated: 2020/01/05 18:35:58 by asablayr         ###   ########.fr       */
+/*   Updated: 2020/01/11 16:50:33 by asablayr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "libft.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-void	get_color(char obj, t_settings *set, char *str)
+void	get_color(int *set, char *str)
 {
-	int text[3];
-
-	text[0] = ft_atoi(++str);
+	set[0] = ft_atoi(++str);
 	while (*str != ',')
 		str++;
-	text[1] = ft_atoi(++str);
+	set[1] = ft_atoi(++str);
 	while (*str != ',')
 		str++;
-	text[2] = ft_atoi(++str);
-	if (obj == 'F')
-		set->c_f = text;
-	else
-		set->c_c = text;
+	set[2] = ft_atoi(++str);
 }
 
-void	get_text(char *text, char *str)
+char	*get_text(char *str)
 {
 	while (*str == ' ')
 			str++;
-	text = str;
+	return (str);
 }
 
 void	get_res(int *res_x, int *res_y, char *str)
@@ -49,20 +45,21 @@ void	get_res(int *res_x, int *res_y, char *str)
 
 void	init_set(t_settings *set)
 {
-	int	c[3];
-	int	f[3];
-
-	set->res_x = 90;
-	set->res_y = 90;
+	if (!(set->c_f = (int*)malloc(sizeof(int) * 3)))
+		return ;
+	if (!(set->c_c = (int*)malloc(sizeof(int) * 3)))
+		return ;
+	set->res_x = 320;
+	set->res_y = 200;
 	set->t_n = "../textures/t_n";
 	set->t_e = "../textures/t_e";
 	set->t_s = "../textures/t_s";
 	set->t_w = "../textures/t_w";
 	set->t_sp = "../textures/t_sp";
-	c[0] = 116;
-	c[1] = 102;
-	c[2] = 59;
-	f[0] = 135;
-	f[1] = 206;
-	f[2] = 235;
+	set->c_c[0] = 116;
+	set->c_c[1] = 102;
+	set->c_c[2] = 59;
+	set->c_f[0] = 135;
+	set->c_f[1] = 206;
+	set->c_f[2] = 235;
 }
